@@ -1,27 +1,57 @@
-const _velocidade = Symbol('velocidade');
+/* const _velocidade = Symbol("velocidade");
 
 class Carro {
-    constructor(nome){
-        this.nome = nome;
-        this[_velocidade] = 0;
-    }
+  constructor(nome) {
+    this.nome = nome;
+    this[_velocidade] = 0;
+  }
 
-    acelerar() {
-        if(this[_velocidade] >= 100) return;
-        this[_velocidade]++;
-    }
+  set velocidade(valor){
+    console.log('SETTER');
+    if (typeof valor !== 'number') return;
+    if (valor >= 100 || valor <= 0) return;
 
-    freiar() {
-        if(this[_velocidade] <= 0) return;
-        this[_velocidade]--;
-    }
+    this[_velocidade] = valor;
+  }
+
+  get velocidade() {
+    console.log('GETTER');
+    return this[_velocidade];
+  }
+
+  acelerar() {
+    if (this[_velocidade] >= 100) return;
+    this[_velocidade]++;
+  }
+
+  freiar() {
+    if (this[_velocidade] <= 0) return;
+    this[_velocidade]--;
+  }
 }
 
-const c1 = new Carro('Fusca');
+const c1 = new Carro("Fusca");
+c1.velocidade = 99;
+console.log(c1.velocidade); */
 
-for(let i = 0; i <= 200; i++){
-    c1.acelerar();
+class Pessoa {
+  constructor(nome, sobrenome) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+  }
+
+  set nomeCompleto(valor) {
+    valor = valor.split(" ");
+    this.nome = valor.shift();
+    this.sobrenome = valor.join(" ");
+  }
+
+  get nomeCompleto() {
+    return this.nome + " " + this.sobrenome;
+  }
 }
 
-c1.velocidade = 2000;
-console.log(c1);
+const p1 = new Pessoa("Luiz", "Miranda");
+p1.nomeCompleto = "Luiz Miranda Oliveira";
+console.log(p1.nome);
+console.log(p1.sobrenome);
